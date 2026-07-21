@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mazz Global — Открытые миры. Без компромиссов.</title>
+<meta name="description" content="Mazz Global Interactive — независимая игровая студия. Highway Rush: Neon Drift Edition — мультиплеерные уличные гонки в неоновом городе. Играйте уже сейчас.">
+<meta name="keywords" content="Mazz Global, Highway Rush, мобильные игры, гонки, мультиплеер, независимая игровая студия">
+<meta name="author" content="Mazz Global Interactive">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.mazzglobal-studio.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mazz Global — Открытые миры. Без компромиссов.">
+<meta property="og:description" content="Highway Rush: Neon Drift Edition — мультиплеерные уличные гонки. Играйте уже сейчас.">
+<meta property="og:url" content="https://www.mazzglobal-studio.com/">
+<meta property="og:site_name" content="Mazz Global Interactive">
+<meta property="og:locale" content="ru_RU">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mazz Global — Открытые миры. Без компромиссов.">
+<meta name="twitter:description" content="Highway Rush: Neon Drift Edition — мультиплеерные уличные гонки. Играйте уже сейчас.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#08060c;
+    --panel:#120e1c;
+    --panel-2:#1c1428;
+    --violet-deep:#4c1d78;
+    --violet:#8b2fd1;
+    --violet-bright:#b453ff;
+    --magenta:#e23fd6;
+    --white:#f6f3fb;
+    --grey:#8c85a0;
+    --hwr-photo: linear-gradient(150deg, var(--violet-deep), var(--black) 70%);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Barlow Condensed', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Anton', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    line-height:0.95;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- fracture motif (signature element) ---------- */
+  .fracture{
+    position:relative;
+  }
+  .fracture::before{
+    content:"";
+    position:absolute;
+    left:0; right:0; top:0;
+    height:6px;
+    background:
+      linear-gradient(115deg, transparent 48%, var(--violet-bright) 48%, var(--violet-bright) 50%, transparent 50%),
+      linear-gradient(90deg, var(--violet-deep), var(--magenta));
+    clip-path: polygon(0 40%, 8% 0, 20% 100%, 33% 20%, 47% 100%, 60% 10%, 74% 100%, 88% 30%, 100% 90%, 100% 100%, 0 100%);
+    opacity:0.9;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 5vw;
+    background:linear-gradient(180deg, rgba(8,6,12,0.95), rgba(8,6,12,0));
+  }
+  .logo{
+    font-family:'Anton', sans-serif;
+    font-size:1.6rem;
+    letter-spacing:2px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .mark{
+    width:14px; height:14px;
+    background:var(--violet-bright);
+    transform:rotate(45deg);
+    box-shadow:0 0 14px var(--violet-bright);
+  }
+  .logo .addr{
+    font-family:'Space Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:1px;
+    color:var(--grey);
+    text-transform:none;
+    display:block;
+    margin-top:2px;
+  }
+  nav ul{
+    display:flex; gap:34px; list-style:none;
+    font-size:0.95rem; letter-spacing:1.5px; text-transform:uppercase;
+  }
+  nav a{position:relative; padding-bottom:4px;}
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:var(--violet-bright); transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative;
+    padding:0 5vw 90px;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(180,83,255,0.35), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(226,63,214,0.18), transparent 50%),
+      var(--black);
+    isolation:isolate;
+  }
+  .hero-crack{
+    position:absolute; inset:0; z-index:-1; opacity:0.5;
+    background-image: repeating-linear-gradient(115deg, transparent 0 120px, rgba(139,47,209,0.12) 120px 122px);
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem; letter-spacing:3px; color:var(--violet-bright);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(3.2rem, 10vw, 8.5rem);
+    color:var(--white);
+    max-width:16ch;
+  }
+  .hero h1 span{color:var(--violet-bright); -webkit-text-stroke:2px var(--violet-bright); color:transparent;}
+  .hero-sub{
+    margin-top:26px; max-width:46ch;
+    font-size:1.25rem; color:var(--grey); font-weight:400;
+  }
+  .hero-cta{
+    margin-top:40px; display:flex; gap:18px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600; text-transform:uppercase; letter-spacing:2px;
+    font-size:1rem; padding:16px 34px;
+    border:2px solid var(--violet-bright);
+    cursor:pointer; transition:all .2s ease;
+    background:transparent; color:var(--white);
+  }
+  .btn.solid{background:var(--violet-bright); color:var(--black);}
+  .btn:hover{background:var(--violet-bright); color:var(--black);}
+
+  .scroll-hint{
+    position:absolute; right:5vw; bottom:40px;
+    writing-mode:vertical-rl;
+    font-family:'Space Mono', monospace; font-size:0.7rem;
+    letter-spacing:3px; color:var(--grey);
+  }
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    background:var(--violet-bright); color:var(--black);
+    padding:10px 0; overflow:hidden; white-space:nowrap;
+    font-family:'Space Mono', monospace; font-weight:700; font-size:0.85rem;
+  }
+  .ticker-track{display:inline-block; padding-left:100%; animation:scroll 26s linear infinite;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+  /* ---------- section shell ---------- */
+  section{padding:120px 5vw;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:60px; flex-wrap:wrap; gap:20px;
+  }
+  .section-head h2{font-size:clamp(2.2rem,5vw,4rem);}
+  .section-head p{color:var(--grey); max-width:36ch; font-size:1.1rem;}
+
+  /* ---------- games grid ---------- */
+  .games{background:var(--panel);}
+  .games-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+    background:rgba(255,255,255,0.05);
+  }
+  .game-card{
+    background:var(--black);
+    position:relative; aspect-ratio:3/4;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:28px; overflow:hidden;
+  }
+  .game-card::before{
+    content:attr(data-code);
+    position:absolute; top:20px; left:28px;
+    font-family:'Space Mono', monospace; font-size:0.7rem; color:var(--grey);
+    letter-spacing:2px;
+  }
+  .game-card::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, transparent 40%, rgba(139,47,209,0.55));
+    opacity:0; transition:opacity .3s ease;
+  }
+  .game-card .bg{
+    position:absolute; inset:0;
+    background: var(--gc, linear-gradient(150deg, var(--violet-deep), var(--black) 70%));
+    opacity:0.9; transition:transform .5s ease;
+  }
+  .game-card .bg svg{
+    width:100%; height:100%; display:block;
+  }
+  .game-card .bg.photo{
+    background-image: var(--hwr-photo);
+    background-size:cover;
+    background-position:center;
+  }
+  .game-card:hover .bg{transform:scale(1.08);}
+  .game-card:hover::after{opacity:1;}
+  .game-card h3{position:relative; font-size:1.9rem; z-index:2;}
+  .game-card h3.unknown{
+    font-size:5rem; text-align:center; width:100%;
+    color:var(--grey); opacity:0.6; margin-bottom:0;
+  }
+  .game-card .tag{
+    position:relative; z-index:2;
+    font-family:'Space Mono', monospace; font-size:0.72rem;
+    color:var(--violet-bright); margin-top:8px; letter-spacing:1px;
+  }
+
+  /* ---------- stats / manifesto ---------- */
+  .manifesto{
+    display:grid; grid-template-columns:1.2fr 1fr; gap:80px; align-items:center;
+  }
+  .manifesto p{
+    font-size:1.5rem; line-height:1.5; color:var(--white); font-weight:400;
+    font-family:'Barlow Condensed', sans-serif;
+  }
+  .manifesto p b{color:var(--violet-bright); font-weight:600;}
+  .stats{display:flex; flex-direction:column; gap:34px;}
+  .stat .num{font-family:'Anton'; font-size:3.2rem; color:var(--violet-bright);}
+  .stat .label{font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--grey); letter-spacing:2px; text-transform:uppercase;}
+
+  /* ---------- newspaper-style news ---------- */
+  .paper{background:var(--panel-2);}
+  .paper-layout{
+    display:grid; grid-template-columns:1.5fr 1fr; gap:60px; align-items:start;
+  }
+  .masthead{
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom:2px solid var(--white); padding-bottom:10px; margin-bottom:26px;
+  }
+  .masthead-title{font-family:'Anton', sans-serif; font-size:1.3rem; letter-spacing:2px;}
+  .masthead-meta{font-size:0.68rem; color:var(--grey); letter-spacing:1px;}
+  .paper-story{
+    padding:20px 0; border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .paper-story:first-of-type{border-top:none; padding-top:0;}
+  .kicker{
+    display:block; font-size:0.68rem; letter-spacing:2px; text-transform:uppercase;
+    color:var(--violet-bright); margin-bottom:8px;
+  }
+  .paper-story.lead h3{font-size:1.9rem; margin-bottom:10px;}
+  .paper-story h4{font-size:1.3rem; font-weight:600; font-family:'Barlow Condensed'; margin-bottom:8px;}
+  .paper-story p{color:var(--grey); font-size:1.02rem; line-height:1.5; max-width:46ch;}
+  .paper-art{display:flex; justify-content:center; align-items:center;}
+  .paper-art svg{width:100%; max-width:280px; height:auto;}
+
+  /* ---------- release showcase ---------- */
+  .release{background:var(--panel-2); padding-top:60px; padding-bottom:60px;}
+  .release-card{
+    display:grid; grid-template-columns:0.9fr 1.1fr;
+    background:var(--panel); border:1px solid rgba(255,255,255,0.08);
+    overflow:hidden; max-width:820px;
+  }
+  .release-visual{
+    background-image: var(--hwr-photo);
+    background-size:cover; background-position:center;
+    min-height:260px;
+  }
+  .release-body{
+    padding:28px 32px; display:flex; flex-direction:column; gap:8px;
+  }
+  .release-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--violet-bright); font-size:0.7rem; letter-spacing:2px;
+    text-transform:uppercase; margin-bottom:2px;
+  }
+  .release-body h3{font-size:clamp(1.6rem,3vw,2.2rem);}
+  .release-sub{
+    font-family:'Space Mono', monospace; color:var(--grey);
+    font-size:0.78rem; letter-spacing:1px; margin-top:-4px;
+  }
+  .release-body p{
+    color:var(--grey); font-size:0.95rem; line-height:1.45; max-width:44ch;
+    margin-top:2px;
+  }
+  .release-meta{
+    display:flex; gap:22px; flex-wrap:wrap;
+    margin:6px 0 2px; padding:14px 0;
+    border-top:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .release-meta > div{display:flex; flex-direction:column; gap:3px;}
+  .release-meta .label{font-size:0.62rem; color:var(--grey); letter-spacing:1.5px; text-transform:uppercase;}
+  .release-meta .val{font-size:0.92rem; font-family:'Barlow Condensed';}
+  .release-body .btn{align-self:flex-start; margin-top:6px; padding:12px 26px; font-size:0.82rem;}
+
+  /* ---------- support ---------- */
+  .support{
+    background:
+      radial-gradient(ellipse at 85% 0%, rgba(226,63,214,0.14), transparent 55%),
+      radial-gradient(ellipse at 5% 100%, rgba(139,47,209,0.16), transparent 50%),
+      var(--panel);
+    padding-top:80px; padding-bottom:80px;
+  }
+  .support .section-head{margin-bottom:40px;}
+  .support-wrap{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:40px; align-items:stretch;
+  }
+  .support-info{
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:28px 26px; background:rgba(180,83,255,0.05);
+    border:1px solid rgba(180,83,255,0.25); position:relative; overflow:hidden;
+  }
+  .support-info::before{
+    content:""; position:absolute; top:-40px; right:-40px;
+    width:140px; height:140px; border-radius:50%;
+    background:radial-gradient(circle, rgba(180,83,255,0.35), transparent 70%);
+  }
+  .support-info p{color:var(--grey); font-size:0.98rem; line-height:1.5; max-width:34ch; margin-bottom:20px; position:relative;}
+  .support-perks{list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:22px; position:relative;}
+  .support-perks li{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--white);
+  }
+  .support-perks li .dot{
+    width:7px; height:7px; flex:0 0 7px; background:var(--violet-bright); border-radius:50%;
+    box-shadow:0 0 8px var(--violet-bright);
+  }
+  .support-email{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Space Mono', monospace; font-size:0.85rem;
+    color:var(--violet-bright); border:1px solid rgba(180,83,255,0.4);
+    padding:11px 16px; position:relative; align-self:flex-start;
+    transition:all .2s ease;
+  }
+  .support-email:hover{background:var(--violet-bright); color:var(--black);}
+
+  .support-form{
+    background:var(--panel-2); border:1px solid rgba(255,255,255,0.08);
+    padding:26px 30px; display:flex; flex-direction:column; gap:14px;
+    position:relative;
+  }
+  .support-form::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--violet-deep), var(--violet-bright), var(--magenta));
+  }
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field label{
+    font-family:'Space Mono', monospace; font-size:0.64rem; letter-spacing:2px;
+    text-transform:uppercase; color:var(--grey);
+  }
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .field input, .field textarea{
+    background:transparent; border:none; border-bottom:1.5px solid rgba(255,255,255,0.15);
+    color:var(--white); font-family:'Barlow Condensed', sans-serif;
+    font-size:1rem; padding:9px 2px; outline:none; transition:border-color .2s ease;
+  }
+  .field input:focus, .field textarea:focus{border-color:var(--violet-bright);}
+  .field textarea{resize:vertical; min-height:80px;}
+  .field input[type="file"]{
+    padding:8px 0; font-family:'Space Mono', monospace; font-size:0.8rem;
+    cursor:pointer; border-bottom:1.5px dashed rgba(255,255,255,0.15);
+  }
+  .field input[type="file"]::file-selector-button{
+    background:var(--violet-bright); color:var(--black); border:none;
+    padding:7px 14px; margin-right:12px; font-family:'Barlow Condensed';
+    font-weight:600; text-transform:uppercase; letter-spacing:1px;
+    cursor:pointer; font-size:0.8rem;
+  }
+  .field-hint{font-family:'Space Mono', monospace; font-size:0.65rem; color:var(--grey);}
+  .support-form .btn{
+    align-self:flex-start; margin-top:4px; padding:13px 30px; font-size:0.88rem;
+    position:relative; overflow:hidden;
+  }
+  .support-form .btn.solid{box-shadow:0 0 0 rgba(180,83,255,0.5); transition:box-shadow .25s ease, transform .15s ease;}
+  .support-form .btn.solid:hover{box-shadow:0 0 22px rgba(180,83,255,0.55); transform:translateY(-1px);}
+  .form-note{
+    font-family:'Space Mono', monospace; font-size:0.68rem; color:var(--grey);
+    margin-top:-4px;
+  }
+  .form-status{
+    font-family:'Space Mono', monospace; font-size:0.75rem;
+    color:var(--violet-bright); min-height:1.1em;
+  }
+  @media(max-width:900px){
+    .support-wrap{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:80px 5vw 40px;
+    background:var(--black);
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .foot-top{
+    display:grid; grid-template-columns:1.4fr repeat(3,1fr); gap:40px;
+    margin-bottom:60px;
+  }
+  .foot-top h3{font-size:1.8rem; margin-bottom:14px;}
+  .foot-top .addr-block{
+    font-family:'Space Mono', monospace; font-size:0.85rem; color:var(--violet-bright);
+    letter-spacing:1px; margin-top:6px; display:block;
+  }
+  .foot-col h5{
+    font-family:'Space Mono', monospace; font-size:0.75rem; letter-spacing:2px;
+    color:var(--grey); text-transform:uppercase; margin-bottom:16px;
+  }
+  .foot-col ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .foot-col a{color:var(--white); font-size:1rem; opacity:0.85;}
+  .foot-col a:hover{color:var(--violet-bright); opacity:1;}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-family:'Space Mono', monospace; font-size:0.72rem; color:var(--grey);
+    padding-top:24px; border-top:1px solid rgba(255,255,255,0.06);
+  }
+
+  @media(max-width:900px){
+    nav ul{display:none;}
+    .games-grid{grid-template-columns:1fr;}
+    .manifesto{grid-template-columns:1fr;}
+    .foot-top{grid-template-columns:1fr 1fr;}
+    .news-item{grid-template-columns:1fr; gap:6px;}
+    .release-card{grid-template-columns:1fr;}
+    .release-visual{min-height:260px;}
+    .release-meta{gap:24px;}
+    .paper-layout{grid-template-columns:1fr;}
+    .paper-art{order:-1; max-width:200px; margin:0 auto 20px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="mark"></span>
+    <div>
+      MAZZ GLOBAL
+      <span class="addr">www.mazzglobal-studio.com</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#games">Игры</a></li>
+      <li><a href="#manifesto">Студия</a></li>
+      <li><a href="#studio-news">Новости</a></li>
+      <li><a href="#release">Релиз</a></li>
+      <li><a href="#support">Поддержка</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero fracture">
+  <div class="hero-crack"></div>
+  <div class="eyebrow mono">MAZZ GLOBAL INTERACTIVE — EST. 2025</div>
+  <h1>МИРЫ,<br>КОТОРЫЕ<br><span>НЕ ПРОЩАЮТ.</span></h1>
+  <p class="hero-sub">Мы создаём открытые миры, где каждое решение оставляет след. Без фильтров, без пауз, без сожалений.</p>
+  <div class="hero-cta">
+    <a href="#games" class="btn solid" style="text-decoration:none; display:inline-block; text-align:center;">Каталог игр</a>
+  </div>
+  <div class="scroll-hint mono">SCROLL ↓</div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track mono">
+    HIGHWAY RUSH — ИГРА УЖЕ ВЫШЛА &nbsp;&nbsp;•&nbsp;&nbsp; NEON DRIFT EDITION ДОСТУПНА СЕЙЧАС &nbsp;&nbsp;•&nbsp;&nbsp; MAZZ GLOBAL INTERACTIVE — НЕЗАВИСИМАЯ СТУДИЯ &nbsp;&nbsp;•&nbsp;&nbsp; HIGHWAY RUSH — ИГРА УЖЕ ВЫШЛА &nbsp;&nbsp;•&nbsp;&nbsp; NEON DRIFT EDITION ДОСТУПНА СЕЙЧАС &nbsp;&nbsp;•&nbsp;&nbsp; MAZZ GLOBAL INTERACTIVE — НЕЗАВИСИМАЯ СТУДИЯ &nbsp;&nbsp;•&nbsp;&nbsp;
+  </div>
+</div>
+
+<section class="games fracture" id="games">
+  <div class="section-head">
+    <h2>Вселенные Mazz Global</h2>
+    <p>Пусто</p>
+  </div>
+  <div class="games-grid">
+    <div class="game-card" data-code="MG-01">
+      <div class="bg photo"></div>
+      <h3>HIGHWAY<br>RUSH</h3>
+      <span class="tag">Neon Drift Edition · Мультиплеер, гонки</span>
+    </div>
+    <div class="game-card" data-code="MG-02" style="--gc:linear-gradient(150deg,#8b2fd1,#160a24 75%)">
+      <div class="bg"></div>
+      <h3 class="unknown">?</h3>
+    </div>
+    <div class="game-card" data-code="MG-03" style="--gc:linear-gradient(150deg,#c026d3,#12081c 75%)">
+      <div class="bg"></div>
+      <h3 class="unknown">?</h3>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" id="manifesto">
+  <p>Mazz Global — это независимая студия, которая строит миры без оглядки на шаблоны. <b>Каждая деталь на карте что-то значит</b>: свет, звук, поведение города вокруг игрока. Мы не гонимся за трендами — мы их задаём.</p>
+  <div class="stats">
+    <div class="stat"><div class="num">2025</div><div class="label">год основания</div></div>
+    <div class="stat"><div class="num">1</div><div class="label">выпущенная вселенная</div></div>
+    <div class="stat"><div class="num">10K+</div><div class="label">игроков по всему миру</div></div>
+  </div>
+</section>
+
+<section class="paper fracture" id="studio-news">
+  <div class="section-head">
+    <h2>Новости</h2>
+  </div>
+  <div class="paper-layout">
+    <div class="paper-column">
+      <div class="masthead">
+        <span class="masthead-title">MAZZ TIMES</span>
+        <span class="masthead-meta mono">ВЫПУСК №04 · 20.07.2026</span>
+      </div>
+      <article class="paper-story lead">
+        <span class="kicker mono">Главное</span>
+        <h3>Highway Rush бьёт рекорды в первую неделю</h3>
+        <p>Более 10 000 игроков вышли на трассу за первые семь дней — редкий случай для дебютного релиза независимой студии.</p>
+      </article>
+      <article class="paper-story">
+        <span class="kicker mono">Студия</span>
+        <h4>Mazz Global расширяет команду разработки</h4>
+        <p>Открыты новые позиции: гейм-дизайн, сетевой код, звук.</p>
+      </article>
+      <article class="paper-story">
+        <span class="kicker mono">Скоро</span>
+        <h4>Второй проект студии — в разработке</h4>
+        <p>Детали пока держатся в секрете, но тизер обещают уже этой осенью.</p>
+      </article>
+    </div>
+    <div class="paper-art" aria-hidden="true">
+      <svg viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(160,205) rotate(-6)">
+          <rect x="-120" y="-160" width="240" height="320" rx="2" fill="#120e1c" stroke="#b453ff" stroke-width="1.5" opacity="0.9"/>
+          <rect x="-104" y="-138" width="208" height="26" fill="none" stroke="#b453ff" stroke-width="1.2" opacity="0.8"/>
+          <text x="0" y="-119" text-anchor="middle" font-family="Anton, sans-serif" font-size="17" fill="#f6f3fb" letter-spacing="1">MAZZ TIMES</text>
+          <line x1="-104" y1="-100" x2="104" y2="-100" stroke="#b453ff" stroke-width="1" opacity="0.6"/>
+          <rect x="-104" y="-88" width="98" height="70" fill="none" stroke="#e23fd6" stroke-width="1" opacity="0.6"/>
+          <g stroke="#8c85a0" stroke-width="2" opacity="0.7">
+            <line x1="-96" y1="-70" x2="-14" y2="-70"/>
+            <line x1="-96" y1="-58" x2="-14" y2="-58"/>
+            <line x1="-96" y1="-46" x2="-30" y2="-46"/>
+          </g>
+          <g stroke="#8c85a0" stroke-width="1.6" opacity="0.6">
+            <line x1="10" y1="-84" x2="104" y2="-84"/>
+            <line x1="10" y1="-74" x2="104" y2="-74"/>
+            <line x1="10" y1="-64" x2="90" y2="-64"/>
+            <line x1="10" y1="-54" x2="104" y2="-54"/>
+            <line x1="10" y1="-44" x2="70" y2="-44"/>
+          </g>
+          <line x1="-104" y1="-4" x2="104" y2="-4" stroke="#b453ff" stroke-width="1" opacity="0.5"/>
+          <g stroke="#8c85a0" stroke-width="1.6" opacity="0.55">
+            <line x1="-104" y1="14" x2="-10" y2="14"/>
+            <line x1="-104" y1="24" x2="-10" y2="24"/>
+            <line x1="-104" y1="34" x2="-24" y2="34"/>
+            <line x1="12" y1="14" x2="104" y2="14"/>
+            <line x1="12" y1="24" x2="104" y2="24"/>
+            <line x1="12" y1="34" x2="88" y2="34"/>
+            <line x1="12" y1="44" x2="104" y2="44"/>
+          </g>
+          <line x1="-104" y1="60" x2="104" y2="60" stroke="#b453ff" stroke-width="1" opacity="0.5"/>
+          <g stroke="#8c85a0" stroke-width="1.6" opacity="0.5">
+            <line x1="-104" y1="76" x2="104" y2="76"/>
+            <line x1="-104" y1="86" x2="104" y2="86"/>
+            <line x1="-104" y1="96" x2="60" y2="96"/>
+            <line x1="-104" y1="112" x2="104" y2="112"/>
+            <line x1="-104" y1="122" x2="40" y2="122"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="release fracture" id="release">
+  <div class="section-head">
+    <h2>Релиз</h2>
+  </div>
+  <div class="release-card">
+    <div class="release-visual"></div>
+    <div class="release-body">
+      <span class="release-badge mono">● Уже вышла</span>
+      <h3>HIGHWAY RUSH</h3>
+      <span class="release-sub">Neon Drift Edition</span>
+      <p>Мультиплеерные уличные гонки в неоновом городе будущего — доступно уже сейчас.</p>
+      <div class="release-meta">
+        <div><span class="mono label">Дата выхода</span><span class="val">20.07.2026</span></div>
+        <div><span class="mono label">Платформы</span><span class="val">Телефон</span></div>
+        <div><span class="mono label">Режим</span><span class="val">Мультиплеер</span></div>
+      </div>
+      <button class="btn solid">Играть сейчас</button>
+    </div>
+  </div>
+</section>
+
+<section class="support fracture" id="support">
+  <div class="section-head">
+    <h2>Поддержка</h2>
+    <p>Есть вопрос по игре или сайту? Напишите нам — мы отвечаем лично.</p>
+  </div>
+  <div class="support-wrap">
+    <div class="support-info">
+      <div>
+        <p>Опишите проблему как можно подробнее — модель телефона, что произошло, скриншот, если есть.</p>
+        <ul class="support-perks">
+          <li><span class="dot"></span> Отвечаем лично, без ботов</li>
+          <li><span class="dot"></span> Можно приложить фото</li>
+          <li><span class="dot"></span> Обычно отвечаем в течение суток</li>
+        </ul>
+      </div>
+      <span class="support-email mono">✉ mazzikplay9@gmail.com</span>
+    </div>
+
+    <form class="support-form" id="supportForm">
+      <input type="hidden" name="access_key" value="ВАШ_КЛЮЧ_СЮДА">
+      <input type="hidden" name="subject" value="Новый вопрос в поддержку Mazz Global">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="field-row">
+        <div class="field">
+          <label for="s-name">Имя</label>
+          <input type="text" id="s-name" name="name" required placeholder="Как к вам обращаться">
+        </div>
+        <div class="field">
+          <label for="s-email">Ваша почта</label>
+          <input type="email" id="s-email" name="email" required placeholder="для ответа">
+        </div>
+      </div>
+      <div class="field">
+        <label for="s-subject">Тема</label>
+        <input type="text" id="s-subject" name="topic" required placeholder="Например: не запускается игра">
+      </div>
+      <div class="field">
+        <label for="s-message">Вопрос</label>
+        <textarea id="s-message" name="message" required placeholder="Опишите ваш вопрос подробно..."></textarea>
+      </div>
+      <div class="field">
+        <label for="s-photo">Фото / скриншот (необязательно)</label>
+        <input type="file" id="s-photo" name="attachment" accept="image/*">
+        <span class="field-hint">JPG, PNG — до 5 МБ</span>
+      </div>
+      <button type="submit" class="btn solid" id="supportSubmitBtn">Отправить вопрос</button>
+      <span class="form-note mono">Письмо и фото придут напрямую на mazzikplay9@gmail.com</span>
+      <span class="form-status mono" id="formStatus"></span>
+    </form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="foot-top">
+    <div>
+      <h3>MAZZ GLOBAL</h3>
+      <p style="color:var(--grey); max-width:34ch; font-size:1rem;">Независимая студия открытых миров.</p>
+      <span class="addr-block">www.mazzglobal-studio.com</span>
+      <span class="addr-block" style="color:var(--grey);">contact@mazzglobal-studio.com</span>
+    </div>
+    <div class="foot-col">
+      <h5><a href="#games">Игры</a></h5>
+      <ul>
+        <li><a href="#games">Highway Rush</a></li>
+        <li><a href="#games">?</a></li>
+        <li><a href="#games">?</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Студия</h5>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Карьера</a></li>
+        <li><a href="#">Пресса</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Соцсети</h5>
+      <ul>
+        <li><a href="#">X / Twitter</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Discord</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 MAZZ GLOBAL INTERACTIVE. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</span>
+    <span>САЙТ: WWW.MAZZGLOBAL-STUDIO.COM</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('supportForm');
+    var status = document.getElementById('formStatus');
+    var btn = document.getElementById('supportSubmitBtn');
+    if(!form) return;
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var accessKey = form.querySelector('input[name="access_key"]').value.trim();
+      if(!accessKey || accessKey === 'ВАШ_КЛЮЧ_СЮДА'){
+        status.textContent = 'Форма ещё не настроена — нужно вставить access key от Web3Forms.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Отправка...';
+      status.textContent = '';
+
+      var formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if(data.success){
+          status.textContent = 'Спасибо! Вопрос отправлен, мы ответим на почту.';
+          form.reset();
+        } else {
+          status.textContent = 'Не получилось отправить. Попробуйте ещё раз или напишите на mazzikplay9@gmail.com напрямую.';
+        }
+      })
+      .catch(function(){
+        status.textContent = 'Ошибка сети. Напишите напрямую на mazzikplay9@gmail.com.';
+      })
+      .finally(function(){
+        btn.disabled = false;
+        btn.textContent = 'Отправить вопрос';
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
