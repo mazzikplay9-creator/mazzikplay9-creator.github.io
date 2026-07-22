@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mazz Global — Открытые миры. Без компромиссов.</title>
-<meta name="description" content="Mazz Global Interactive — независимая инди-студия. Highway Rush: Neon Drift Edition — мультиплеерные уличные гонки в неоновом городе. Играйте уже сейчас.">
-<meta name="keywords" content="Mazz Global, Highway Rush, инди игры, гонки, мультиплеер, независимая игровая студия">
+<meta name="description" content="Mazz Global Interactive — независимая игровая студия. Highway Rush: Neon Drift Edition — мультиплеерные уличные гонки в неоновом городе. Играйте уже сейчас.">
+<meta name="keywords" content="Mazz Global, Highway Rush, мобильные игры, гонки, мультиплеер, независимая игровая студия">
 <meta name="author" content="Mazz Global Interactive">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.mazzglobal-studio.com/">
@@ -49,10 +49,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
   }
 
   body {
@@ -111,7 +107,6 @@
   .nav-links a:hover {
     color: var(--violet-bright);
     transition: color 0.3s ease;
-    cursor: pointer;
   }
 
   /* Buttons */
@@ -203,6 +198,7 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   }
 
+  /* Stylized Visual Mockup replacing the payload */
   .game-visual {
     background: linear-gradient(135deg, var(--violet-deep), var(--black)),
                 repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(226, 63, 214, 0.1) 3px);
@@ -283,14 +279,7 @@
   .section-title {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .section-subtitle {
-    text-align: center;
-    color: var(--grey);
-    max-width: 600px;
-    margin: 0 auto 50px;
+    margin-bottom: 50px;
   }
 
   .grid {
@@ -322,85 +311,6 @@
     font-size: 1rem;
   }
 
-  /* Modal Styling */
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(8, 6, 12, 0.85);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .modal-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .modal-card {
-    background: var(--panel);
-    border: 2px solid var(--violet-bright);
-    box-shadow: 0 0 30px rgba(180, 83, 255, 0.3);
-    border-radius: 8px;
-    padding: 40px;
-    max-width: 550px;
-    width: 90%;
-    position: relative;
-    transform: translateY(20px);
-    transition: transform 0.3s ease;
-  }
-
-  .modal-overlay.active .modal-card {
-    transform: translateY(0);
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    color: var(--grey);
-    font-size: 1.8rem;
-    cursor: pointer;
-    line-height: 1;
-  }
-
-  .modal-close:hover {
-    color: var(--magenta);
-  }
-
-  .modal-card h2 {
-    font-size: 2.2rem;
-    color: var(--white);
-    margin-bottom: 15px;
-  }
-
-  .modal-card p {
-    color: var(--grey);
-    margin-bottom: 15px;
-  }
-
-  .modal-badge {
-    display: inline-block;
-    background: var(--violet-deep);
-    color: var(--violet-bright);
-    padding: 4px 12px;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border: 1px solid var(--violet);
-  }
-
   /* Footer */
   footer {
     background-color: var(--panel);
@@ -427,9 +337,9 @@
     <div class="container navbar">
       <a href="#" class="logo">MAZZ <span>GLOBAL</span></a>
       <ul class="nav-links">
-        <li><a href="#featured">Игры</a></li>
-        <li><a id="nav-about-link">О нас</a></li>
-        <li><a href="#about">Принципы</a></li>
+        <li><a href="#games">Игры</a></li>
+        <li><a href="#about">О студии</a></li>
+        <li><a href="#careers">Карьера</a></li>
       </ul>
       <a href="#featured" class="btn btn-secondary">Играть</a>
     </div>
@@ -440,10 +350,10 @@
     <div class="container">
       <span class="hero-tag">[ Independent Game Studio ]</span>
       <h1 class="font-heading">Открытые миры.<br>Без компромиссов.</h1>
-      <p>Создаём независимые мультиплеерные инди-игры нового поколения с глубоким погружением и полной свободой действий.</p>
+      <p>Создаём независимые мультиплеерные игры нового поколения с глубоким погружением и свободой действий.</p>
       <div class="hero-cta">
         <a href="#featured" class="btn btn-primary">Highway Rush</a>
-        <a id="hero-about-btn" class="btn btn-secondary">О Студии</a>
+        <a href="#about" class="btn btn-secondary">О Студии</a>
       </div>
     </div>
   </section>
@@ -476,30 +386,29 @@
           </div>
 
           <div>
-            <a href="#" class="btn btn-primary">Играть</a>
+            <a href="#" class="btn btn-primary">Скачать Играть</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Studio Pillars Section -->
+  <!-- Studio Pillars -->
   <section id="about" class="features">
     <div class="container">
-      <h2 class="section-title font-heading">Mazz Global Interactive</h2>
-      <p class="section-subtitle">Независимая инди-студия разработки игр. Наш подход — чистое игровое творчество без корпоративных рамок.</p>
+      <h2 class="section-title font-heading">Наши Принципы</h2>
       <div class="grid">
         <div class="feature-card">
-          <h3 class="font-heading">100% Инди-дух</h3>
-          <p>Мы полностью независимы. Каждая механика, стиль и идеология игры создаются вручную нашей командой без внешнего давления.</p>
+          <h3 class="font-heading">Свобода и Драйв</h3>
+          <p>Проектируем игры, ориентируясь на свободу игрока, динамику и интуитивно понятный игровой процесс.</p>
         </div>
         <div class="feature-card">
           <h3 class="font-heading">Современные Технологии</h3>
-          <p>Используем передовые движки и сетевые решения для высокой производительности и качественной синхронизации.</p>
+          <p>Используем передовые решения для высокой производительности и качественной сетевой синхронизации.</p>
         </div>
         <div class="feature-card">
           <h3 class="font-heading">Игровое Сообщество</h3>
-          <p>Разрабатываем проекты в постоянном диалоге с игроками, дорабатывая фичи на основе реальных отзывов.</p>
+          <p>Разрабатываем проекты в постоянном диалоге с игроками, учитывая отзывы на каждом этапе.</p>
         </div>
       </div>
     </div>
@@ -511,46 +420,6 @@
       <p>&copy; 2026 Mazz Global Interactive. Все права защищены.</p>
     </div>
   </footer>
-
-  <!-- About Us Modal -->
-  <div class="modal-overlay" id="about-modal">
-    <div class="modal-card">
-      <button class="modal-close" id="modal-close">&times;</button>
-      <span class="modal-badge font-mono">INDEPENDENT STUDIO</span>
-      <h2 class="font-heading">Кто мы такие?</h2>
-      <p><strong>Mazz Global Interactive</strong> — это независимая инди-студия геймдева. Мы делаем игры сами, без крупных издателей и жестких корпоративных ограничений.</p>
-      <p>Наша главная цель — делать драйвовые, стильные и честные игры (как наш флагман <em>Highway Rush</em>), где на первом месте стоит интерес игрока и свобода игрового процесса.</p>
-      <button class="btn btn-primary" id="modal-ok-btn" style="width: 100%; margin-top: 10px;">Понятно</button>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.getElementById('about-modal');
-    const openLinks = [document.getElementById('nav-about-link'), document.getElementById('hero-about-btn')];
-    const closeBtn = document.getElementById('modal-close');
-    const okBtn = document.getElementById('modal-ok-btn');
-
-    function openModal(e) {
-      if (e) e.preventDefault();
-      modal.classList.add('active');
-    }
-
-    function closeModal() {
-      modal.classList.remove('active');
-    }
-
-    openLinks.forEach(link => {
-      if (link) link.addEventListener('click', openModal);
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-    okBtn.addEventListener('click', closeModal);
-
-    // Закрытие при клике мимо карточки
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-  </script>
 
 </body>
 </html>
